@@ -1,6 +1,6 @@
 API Documentation, v0.9
 
-API is based on [Tastypie](http://django-tastypie.readthedocs.org/en/latest/).
+API is based on the yummy [Tastypie](http://django-tastypie.readthedocs.org/en/latest/).
 This is version 0.9.
 
 ---
