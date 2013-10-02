@@ -1,28 +1,24 @@
-# Introduction to Long Access API v1
+# Introduction to Long Access API (v1.0)
 
 ## Getting started
 
-Visit [stage.longaccess.com](http://stage.longaccess.com/) and create a new user. You will need this user's credentials to test your client. 
+Visit [www.longaccess.com](http://www.longaccess.com/) and create a new user. You will need this user's credentials to test your client. 
 
 Verify user (users are identified by their email) using the API:
 
     curl -u email:password \
     --dump-header - \
     -H "Accept: application/json" \
-    http://stage.longaccess.com/api/v1/account/
+    http://www.longaccess.com/api/v1/account/
 
-While at it, you should also create at least one DataCapsule. Use the following (dummy) credit card (provided by braintree sandbox):
-
-    Credit Card Number: 4111111111111111
-    CVV: 111 
-    Expiration Date: 11/2015
+While at it, you should also create at least one DataCapsule. 
 
 Verify that the DataCapsule was created using the API:
 
     curl -u email:password \
     --dump-header - \
     -H "Accept: application/json" \
-    http://stage.longaccess.com/api/v1/capsule/
+    http://www.longaccess.com/api/v1/capsule/
    
 ## Preparing the archive.
 
@@ -78,14 +74,14 @@ Then the client initiates the upload using the `/upload/` call, providing the de
     		"size": 10512,\
     		"checksum": "md5:d85d8251bd93decb7396e767700acb9f"\
     }' \
-    http://stage.longaccess.com/api/v1/upload/
+    http://www.longaccess.com/api/v1/upload/
 
 And response:
 
     {
         "id": "1573",
         "resource_uri": "/api/v1/upload/1",
-        "bucket": "lastage",
+        "bucket": "lawww",
         "prefix": "upload/1573/",
         "capsule": "/api/v1/capsule/1/", 
         "description": "My awesome photos",
@@ -95,7 +91,7 @@ And response:
         "token_secret_key": "5cqp0qsQbtMO13HsJ5bh1DzpY0kAX8brL+I/ZZ8Z",
         "token_session": "AQoDYXdzE...TGVW6ghd68B5czR9T51svX3rkzzhFtINn/xpEF",
         "token_expiration": "2013-09-12T14:21:29Z",
-        "token_uid": "stage1573"
+        "token_uid": "www1573"
         ]
     }
 
@@ -111,7 +107,7 @@ Using the information in the response the client can then begin uploading to S3:
 * determining the destination bucket (JSON key `bucket`) and key prefix by (JSON key `prefix`).
 * determining the expiration time and date of the token (JSON key `token_expiration`).
 
-For example, in the example response listed above the client would upload the archive to the S3 URL `s3://lastage/upload/1573/` using the access key and secret in `token`. It will also renew the token before 2:21 PM UTC on the 12th of September.
+For example, in the example response listed above the client would upload the archive to the S3 URL `s3://lawww/upload/1573/` using the access key and secret in `token`. It will also renew the token before 2:21 PM UTC on the 12th of September.
 
 To upload the archive the client calls the appropriate AWS SDK or [API method to initiate a multipart upload][InitMultiPart] to a destination key under `prefix`. It then proceeds to upload the archive in parts of 500 MB size using the [appropriate S3 API or SDK method][UploadPart]. Since the security token will expire (typically after a few hours) the client may not be able to upload all the parts during it's lifetime. So at some point the client must finalize the current multipart upload, either before the expiration of the token or after all parts are uploaded. This should be done by calling the appropriate S3 API or SDK method to signal [completion of the MultiPart Upload][CompleteMultiPart].
 
@@ -136,7 +132,7 @@ Once the archive upload is complete, i.e. all portions have been uploaded, the c
     -H "Content-Type: application/json" \
     -X PATCH \
     --data '{"id": "1", "status": "uploaded"}' \
-    http://stage.longaccess.com/api/v1/upload/1
+    http://www.longaccess.com/api/v1/upload/1
 
 After completing the upload the client will have to wait while the server checks the integrity of the archive. To do this it should periodically call `GET /upload/:id/` (we suggest at 30 minute intervals) until the API returns with a status of `completed`. When status is `completed`, an extra JSON key is returned, called `archive_id`. Now the upload process is completed, the archive is safely stored and the client can generate the certificate.
 
