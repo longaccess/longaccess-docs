@@ -16,6 +16,6 @@ history
 
 To view older versions of some of the files in this repo do:
 
-    git remote add history git@github.com:kouk/longaccess-cli.git
+    git remote add history git@github.com:longaccess/longaccess-cli.git
     git fetch history docs:docs
     git replace 3d9b15fc4f92936ad3aeb0732f31f1ef6c2d2376 36ee0389f22ea082e894d6f795e4dee49f207790
