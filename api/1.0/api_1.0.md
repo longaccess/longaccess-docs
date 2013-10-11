@@ -7,8 +7,7 @@ This is version 0.9.
 
 ## REST API Endpoint
 
-While in private alpha, the API endpoint is
-`http://stage.longaccess.com/api/v1/`
+The API endpoint is `http://www.longaccess.com/api/v1/`
 
 ## Request format
 *:resource* refers to the value of a resource. For example, *:id* will be substituted by the numeric ID of the resource when an API call is used.
@@ -284,7 +283,7 @@ You can easily test API with [curl](http://curl.haxx.se/).
 
 ```
 curl -u user1@longaccess.com:test123la --dump-header - \
--H "Accept: application/json" http://stage.longaccess.com/api/v1/capsule/
+-H "Accept: application/json" http://www.longaccess.com/api/v1/capsule/
 ```
 
 2. Initiate a new upload operation
@@ -293,11 +292,11 @@ curl -u user1@longaccess.com:test123la --dump-header - \
 curl -u user1@longaccess.com:test123la --dump-header - \
 -H "Content-Type: application/json" -X POST \
 --data '{"title": "test", "description": "blah blah", "capsule": "/api/v1/capsule/1/", "status": "pending"}' \
-http://stage.longaccess.com/api/v1/upload/
+http://www.longaccess.com/api/v1/upload/
 ```
 
 3. Get information and a new set of credentials for an existing upload operation
 
 ```
-curl -u user1@longaccess.com:test123la http://stage.longaccess.com/api/v1/upload/1/
+curl -u user1@longaccess.com:test123la http://www.longaccess.com/api/v1/upload/1/
 ```

@@ -5,11 +5,13 @@ This is the Longaccess developers documentation.
 
 This document is located at [http://github.com/longaccess/longaccess-docs]()
 
-You should start by reading [intro.md](intro.md) which is a higher-level overview of how the longaccess API works.
+- If you are not familiar with longaccess, you should read [What is Longaccess?](what_is_longaccess.md).
+- The [Introduction to Longaccess API](introduction_to_longaccess_api.md ) is a higher-level overview of how the longaccess API works.
+- The [api](api/) folder has an extensive and detailed information about the API.
 
-Under the [api](api/) folder you will find more detailed information.
+For questions or suggestions, join us at the [Longaccess Developers Community on Google+](https://plus.google.com/u/0/communities/106417301617588385467).
 
-For questions or suggestions, we suggest you join the [Longaccess Developers Community on Google+](https://plus.google.com/u/0/communities/106417301617588385467).
+You can also keep up with the Longaccess Development Team at [longaccess.io](http://longaccess.io)
 
 history
 -------
