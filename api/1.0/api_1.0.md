@@ -182,7 +182,7 @@ When credentials are close to expiring (or if they expired), the client can do a
 
 When the upload is complete, the client does a PATCH call to /upload/:id/ sending the archive checksum, the parts number and updating the status to 'uploaded'.
 
-Periodically the client does a GET call to /upload/:id/ to check the status of the operation. When the status is 'completed' the archive has been verified and archived by the backend. The client can now issue the PeperKey.
+Periodically the client does a GET call to /upload/:id/ to check the status of the operation. When the status is 'completed' the archive has been verified and archived by the backend. The client can now issue the PaperKey.
 
 ### POST /upload/
 
