@@ -140,6 +140,7 @@ The certificate must include the following information:
 
 - Archive id 
 - Checksum 
+- Archive Size in bytes.
 - AES encryption key 
 - Archive title 
 - Archive description
