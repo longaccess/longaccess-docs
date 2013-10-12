@@ -92,7 +92,6 @@ And response:
         "token_session": "AQoDYXdzE...TGVW6ghd68B5czR9T51svX3rkzzhFtINn/xpEF",
         "token_expiration": "2013-09-12T14:21:29Z",
         "token_uid": "www1573"
-        ]
     }
 
     
@@ -112,9 +111,9 @@ For example, in the example response listed above the client would upload the ar
 To upload the archive the client calls the appropriate AWS SDK or [API method to initiate a multipart upload][InitMultiPart] to a destination key under `prefix`. It then proceeds to upload the archive in parts of 500 MB size using the [appropriate S3 API or SDK method][UploadPart]. Since the security token will expire (typically after a few hours) the client may not be able to upload all the parts during it's lifetime. So at some point the client must finalize the current multipart upload, either before the expiration of the token or after all parts are uploaded. This should be done by calling the appropriate S3 API or SDK method to signal [completion of the MultiPart Upload][CompleteMultiPart].
 
 Depending on the size of the archive and the duration of the token the client may need to repeat the previous operations more than once, each time uploading a subsequent portion of the archive. In this case each portion must be uploaded in order to a sequentially named key using the prefix calculated earlier. E.g.:
-- `/upload/1573/1`
-- `/upload/1573/2`
-- `/upload/1573/3`
+- `/upload/www1573/1`
+- `/upload/www1573/2`
+- `/upload/www1573/3`
 - etc.
 
 After each portion is finalized, but before the next portion's upload begins, the client may request a new token from the API. This can be done by using the upload id and calling:
