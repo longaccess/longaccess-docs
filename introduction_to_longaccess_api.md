@@ -2,14 +2,14 @@
 
 ## Getting started
 
-Visit [www.longaccess.com](http://www.longaccess.com/) and create a new user. You will need this user's credentials to test your client. 
+Visit [www.longaccess.com](https://www.longaccess.com/) and create a new user. You will need this user's credentials to test your client. 
 
 Verify user (users are identified by their email) using the API:
 
     curl -u email:password \
     --dump-header - \
     -H "Accept: application/json" \
-    http://www.longaccess.com/api/v1/account/
+    https://www.longaccess.com/api/v1/account/
 
 While at it, you should also create at least one DataCapsule. 
 
@@ -18,7 +18,7 @@ Verify that the DataCapsule was created using the API:
     curl -u email:password \
     --dump-header - \
     -H "Accept: application/json" \
-    http://www.longaccess.com/api/v1/capsule/
+    https://www.longaccess.com/api/v1/capsule/
    
 ## Preparing the archive.
 
@@ -74,7 +74,7 @@ Then the client initiates the upload using the `/upload/` call, providing the de
     		"size": 10512,\
     		"checksum": "md5:d85d8251bd93decb7396e767700acb9f"\
     }' \
-    http://www.longaccess.com/api/v1/upload/
+    https://www.longaccess.com/api/v1/upload/
 
 And response:
 
@@ -131,7 +131,7 @@ Once the archive upload is complete, i.e. all portions have been uploaded, the c
     -H "Content-Type: application/json" \
     -X PATCH \
     --data '{"id": "1", "status": "uploaded"}' \
-    http://www.longaccess.com/api/v1/upload/1
+    https://www.longaccess.com/api/v1/upload/1
 
 After completing the upload the client will have to wait while the server checks the integrity of the archive. To do this it should periodically call `GET /upload/:id/` (we suggest at 30 minute intervals) until the API returns with a status of `completed`. When status is `completed`, an extra JSON key is returned, called `archive_id`. Now the upload process is completed, the archive is safely stored and the client can generate the certificate.
 
@@ -145,7 +145,7 @@ The certificate must include the following information:
 - Archive description
 - Archive upload date
 - User email
-- URL to retrieve data: http://www.longaccess.com/
+- URL to retrieve data: https://www.longaccess.com/
 
  [InitMultiPart]: http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html
  [CompleteMultiPart]: http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadComplete.html
