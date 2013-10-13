@@ -54,11 +54,11 @@ The document is a mapping with the following keys:
 
 #### Example container format names
 
-* `[ustar][]` - standard TAR format, widely implemented
-* `[cpio][]` - standard CPIO format, mostly Unix
-* `[zip][]` - standard ZIP format, widely implemented
-* `[7z][]` - 7zip format, mostly Windows
-* `[xz][]` - XZ format, mostly Unix 
+* [ustar][] - standard TAR format, widely implemented
+* [cpio][] - standard CPIO format, mostly Unix
+* [zip][] - standard ZIP format, widely implemented
+* [7z][] - 7zip format, mostly Windows
+* [xz][] - XZ format, mostly Unix 
 
 Please note that the ZIP format does not in it's historical form support files larger than 2 GB.
 Additionally it does not mandate Unicode filenames. Many clients support both
@@ -66,18 +66,18 @@ large files and Unicode names as extensions. These however are not standard. We
 propose that archives that are created with these extensions specify a
 different container format than `zip` like for example: 
 
-* `[ziputf][]` - standard ZIP format with Unicode filenames, not so widely implemented
-* `[zip64][]` - standard ZIP format for large files, not so widely implemented
-* `[zip64utf][]` - standard ZIP format for large files with Unicode filenames, not so widely implemented
+* [ziputf][] - standard ZIP format with Unicode filenames, not so widely implemented
+* [zip64][] - standard ZIP format for large files, not so widely implemented
+* [zip64utf][] - standard ZIP format for large files with Unicode filenames, not so widely implemented
 
 
 #### Example compression algorithm names
 
-* `[deflate][]` - widely available, low compression, ok performance
-* `[bzip2][]` - less available, good compression, poor performance
-* `[lzma][]` - widely available, high compression, ok performance
-* `[lzma2][]` - not widespread, highest compression, good performance
-* `[Snappy][]` - not widespread, low compression,  extreme performance
+* [deflate][] - widely available, low compression, ok performance
+* [bzip2][] - less available, good compression, poor performance
+* [lzma][] - widely available, high compression, ok performance
+* [lzma2][] - not widespread, highest compression, good performance
+* [Snappy][] - not widespread, low compression,  extreme performance
 
 #### Example cipher id's
 
