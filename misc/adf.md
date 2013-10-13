@@ -43,6 +43,7 @@ The document is a mapping with the following keys:
     - `platform` - a description of the computing platform that the archive was produced on.
     - `creator` - a description of the person or organization who created the archive
     - `created` - a timestamp for the time of the archive creation, in ISO format (e.g. 2013-06-07T10:45:01Z)
+    - `size` - the size of the archive file, in [MiB]()
     - `format` - the id of the container format or a mapping with the following keys:
         + `type` - the id of the container format
         + `compression` - the id of an additional compressed container format
@@ -148,3 +149,4 @@ The optional document is a mapping with the following keys:
  [HKDF (RFC 5869)]: http://tools.ietf.org/html/rfc5869 "HKDF"
  [RFC 2898]: http://tools.ietf.org/html/rfc2898 "PBKDF"
  [scrypt (Internet Draft)]: http://tools.ietf.org/html/draft-josefsson-scrypt-kdf-01 "draft-josefsson-scrypt-kdf-01"
+ [MiB]: https://en.wikipedia.org/wiki/Mebibyte "Mebibyte on wikipedia"
