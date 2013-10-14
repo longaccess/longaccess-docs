@@ -255,8 +255,8 @@ Update upload operation status. The PATCH body must be JSON encoded and the `Con
 Example:
 
     {
-        "status": "uploaded"
-        "checksum" : "f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7"
+        "status": "uploaded",
+        "checksum" : "f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7",
         "parts" : 3
     }
 
