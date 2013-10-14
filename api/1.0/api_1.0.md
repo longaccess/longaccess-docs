@@ -184,6 +184,15 @@ When the upload is complete, the client does a PATCH call to /upload/:id/ sendin
 
 Periodically the client does a GET call to /upload/:id/ to check the status of the operation. When the status is 'completed' the archive has been verified and archived by the backend. The client can now issue the PaperKey.
 
+The values that may be returned by the API for the `status` attribute are:
+
+* `pending` - the upload is active but the client has not completed the transmission
+* `error` - the upload is not active due to an error
+* `uploaded` - the upload is active and the client has completed the transmission
+* `joined` - the separate parts of the archive have been joined 
+* `verified` - the joined archive has been verified by the service
+* `completed` - the operation is complete. The archive ID is available to the client in a separate attribute. 
+
 ### POST /upload/
 
 Initiates a new upload operation for the authenticated user. The POST body must be JSON encoded and the `Content-Type` header should be `application/json`.
@@ -217,6 +226,8 @@ Example:
 - `token_uid` - STS upload id
 - `bucket` - the name of the S3 bucket to upload to
 - `prefix` - the prefix to add to the key name when uploading
+- `created` - the date and time the upload operation was created (ISO timestamp)
+- `status` - the status of the upload operation. Value may be `pending` or `error`.
 
 ### GET /upload/:id/
 
@@ -231,7 +242,7 @@ Get upload operation (with :id) details.
 - `title` - the title given to this archive.
 - `description` - the description given to this archive.
 - `resource_uri` - the API uri for the specific upload operation.
-- `status` - the status of the upload operation ((pending, uploaded, completed, error)
+- `status` - the status of the upload operation. See above for the possible values. 
 - `token_access_key` - S3 Access key
 - `token_secret_key` - S3 Secret key
 - `token_session` - STS secure token
@@ -239,6 +250,8 @@ Get upload operation (with :id) details.
 - `token_uid` - STS upload id
 - `bucket` - the name of the S3 bucket to upload to
 - `prefix` - the prefix to add to the key name when uploading
+- `created` - the date and time the upload operation was created (ISO timestamp)
+- `archive_uri` - the URI of the archive (only present when `status` is `completed`)
 
 ### PATCH /upload/:id/
 
@@ -248,12 +261,27 @@ Update upload operation status. The PATCH body must be JSON encoded and the `Con
 
 **Request body**: JSON mapping with the following keys:
 
-- `status` - (pending, uploaded)
+- `status` - what the new status of the archive should be. The value may be `pending` or `uploaded`.
+- `checksums` - a dictionary with archive hashes as hex encoded bytes. Contains the following keys:
+    * `md5` - the `md5` hash of the archive
+    * `sha512` - the `sha512` hash of the archive (optional)
+- `parts` - the number of parts that the client has uploaded so far.
+- `keys` - the S3 keys of the individual parts, in order.
 
 Example:
 
     {
-        "status": "uploaded"
+        "status": "uploaded",
+        "checksums" : {
+            "md5": "acbd18db4cc2f85cedef654fccc4a4d8",
+            "sha512": "f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7"
+        },
+        "parts" : 3,
+        "keys" [
+            'upload/1523-42/temp-archive-0',
+            'upload/1523-42/temp-archive-1',
+            'upload/1523-42/temp-archive-2',
+        ],
     }
 
 **Returns**:
@@ -263,7 +291,7 @@ Example:
 - `title` - the title given to this archive.
 - `description` - the description given to this archive.
 - `resource_uri` - the API uri for the specific upload operation.
-- `status` - the status of the upload operation.
+- `status` - the status of the upload operation. See above for the possible values.
 - `token_access_key` - S3 Access key
 - `token_secret_key` - S3 Secret key
 - `token_session` - STS secure token
@@ -271,6 +299,7 @@ Example:
 - `token_uid` - STS upload id
 - `bucket` - the name of the S3 bucket to upload to
 - `prefix` - the prefix to add to the key name when uploading
+- `created` - the date and time the upload operation was created (ISO timestamp)
 
 
 ## Testing
