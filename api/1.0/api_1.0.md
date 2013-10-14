@@ -189,8 +189,6 @@ The values that may be returned by the API for the `status` attribute are:
 * `pending` - the upload is active but the client has not completed the transmission
 * `error` - the upload is not active due to an error
 * `uploaded` - the upload is active and the client has completed the transmission
-* `joined` - the separate parts of the archive have been joined 
-* `verified` - the joined archive has been verified by the service
 * `completed` - the operation is complete. The archive ID is available to the client in a separate attribute. 
 
 ### POST /upload/
