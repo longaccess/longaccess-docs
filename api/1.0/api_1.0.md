@@ -217,6 +217,7 @@ Example:
 - `token_uid` - STS upload id
 - `bucket` - the name of the S3 bucket to upload to
 - `prefix` - the prefix to add to the key name when uploading
+- `created` - the date and time the upload operation was created (ISO timestamp)
 
 ### GET /upload/:id/
 
@@ -239,6 +240,7 @@ Get upload operation (with :id) details.
 - `token_uid` - STS upload id
 - `bucket` - the name of the S3 bucket to upload to
 - `prefix` - the prefix to add to the key name when uploading
+- `created` - the date and time the upload operation was created (ISO timestamp)
 
 ### PATCH /upload/:id/
 
@@ -275,6 +277,7 @@ Example:
 - `token_uid` - STS upload id
 - `bucket` - the name of the S3 bucket to upload to
 - `prefix` - the prefix to add to the key name when uploading
+- `created` - the date and time the upload operation was created (ISO timestamp)
 
 
 ## Testing
