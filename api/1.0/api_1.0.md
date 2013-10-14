@@ -262,7 +262,9 @@ Update upload operation status. The PATCH body must be JSON encoded and the `Con
 **Request body**: JSON mapping with the following keys:
 
 - `status` - what the new status of the archive should be. The value may be `pending` or `uploaded`.
-- `checksum` - the `sha512` hash of the archive (optional)
+- `checksums` - a dictionary with archive hashes as hex encoded bytes. Contains the following keys:
+    * `md5` - the `md5` hash of the archive
+    * `sha512` - the `sha512` hash of the archive (optional)
 - `parts` - the number of parts that the client has uploaded so far.
 - `keys` - the S3 keys of the individual parts, in order.
 
@@ -270,7 +272,10 @@ Example:
 
     {
         "status": "uploaded",
-        "checksum" : "f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7",
+        "checksums" : {
+            "md5": "acbd18db4cc2f85cedef654fccc4a4d8",
+            "sha512": "f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7"
+        },
         "parts" : 3,
         "keys" [
             'upload/1523-42/temp-archive-0',
