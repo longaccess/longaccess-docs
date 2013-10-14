@@ -115,10 +115,9 @@ Additionally the document mapping may contain a key `signature` which contains a
 
 ### Links
 
-The optional document is a mapping with any of the following keys:
+The optional document is a mapping that may contain the following key:
 
 * `download` - a URI that identifies the remote downloadable archive
-* `local` - a local `file://` URL where the archive is located on the local host
 
 ### Auth
 
