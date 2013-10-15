@@ -200,7 +200,6 @@ Initiates a new upload operation for the authenticated user. The POST body must 
 **Request body**: JSON mapping with the following keys:
 
 - `capsule` - the uri of the capsule (for example: /api/v1/capsule/3/)
-- `size` - the size of the archive (in MB)
 - `title` - the title of the archive
 - `description` - the description of the archive
 
@@ -209,8 +208,7 @@ Example:
     {
         "title": "test",
         "description": "blah blah",
-        "capsule": "/api/v1/capsule/1/",
-        "size": 1024
+        "capsule": "/api/v1/capsule/1/"
     }
 
 **Returns**:
@@ -260,6 +258,7 @@ Update upload operation status. The PATCH body must be JSON encoded and the `Con
 **Request body**: JSON mapping with the following keys:
 
 - `status` - what the new status of the archive should be. The value may be `pending` or `uploaded`.
+- `size` - the uploaded archive's size in bytes
 - `checksums` - a dictionary with archive hashes as hex encoded bytes. Contains the following keys:
     * `md5` - the `md5` hash of the archive
     * `sha512` - the `sha512` hash of the archive (optional)
@@ -270,6 +269,7 @@ Example:
 
     {
         "status": "uploaded",
+        "size": "4509283",
         "checksums" : {
             "md5": "acbd18db4cc2f85cedef654fccc4a4d8",
             "sha512": "f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7"
