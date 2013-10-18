@@ -2,9 +2,9 @@ The latest version of this document is always available at [github.com/longacces
 
 #What is Longaccess?
 
-Longaccess is a long-term data storage. 
+Longaccess is a long-term data storage service. 
 
-You buy one or more storage spaces (there are various storage sizes available) called **DataCapsule**, and we keep its contents for 30 years. You group and upload your data in bunches we call **archives**. Each archive is encrypted and the ONLY way to download the data and decrypt it is to use the **certificate** you get when the upload is completed. You can't delete archives -however, you can render them useless, by destroying the associated certificate.
+You buy one or more storage spaces (there are various storage sizes available) called **DataCapsules**, and we keep its content for 30 years. You group and upload your data in bunches we call **archives**. Each archive is encrypted and the ONLY way to download the data and decrypt it is to use the **certificate** you get when the upload is completed. You can't delete archives -however, you can render them useless, by destroying the associated certificate.
 
 ## How it works - Overview.
 
