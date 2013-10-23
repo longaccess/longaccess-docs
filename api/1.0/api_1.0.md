@@ -247,7 +247,7 @@ Get upload operation (with :id) details.
 - `bucket` - the name of the S3 bucket to upload to
 - `prefix` - the prefix to add to the key name when uploading
 - `created` - the date and time the upload operation was created (ISO timestamp)
-- `archive_uri` - the URI of the archive (only present when `status` is `completed`)
+- `archive_key` - the key of the archive (only present when `status` is `completed`)
 
 ### PATCH /upload/:id/
 
