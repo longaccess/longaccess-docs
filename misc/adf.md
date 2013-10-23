@@ -32,6 +32,7 @@ The basic structure of an ADF file is a typical YAML 2.0 file with a header and 
 * `auth` (optional) - authentication data (to verify authenticity)
 * `certificate` - confidential data that provide access to the data stored in the service
 * `links` - a list of URL's where the archive can be found
+* `signature` - data that verifies the holding of the archive by a service (digital signature, archive id, url, etc.)
 
 ### Archive
 
@@ -118,6 +119,13 @@ Additionally the document mapping may contain a key `signature` which contains a
 The optional document is a mapping that may contain the following key:
 
 * `download` - a URI that identifies the remote downloadable archive
+
+### Signature
+
+The optional document is a mapping that may contain the following key:
+
+* `aid` - a string that identifies the remote downloadable archive, in combination with the `uri`
+* `uri` - a URI that identifies the service that is holding the archive with the `aid`
 
 ### Auth
 
