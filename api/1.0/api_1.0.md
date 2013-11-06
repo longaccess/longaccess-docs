@@ -68,12 +68,12 @@ A JSON object containing two attributes:
    * `previous` - if a previous page of results is available this will contain the page's URI or, if not available, null.
    * `total_count` - the total number of results (independent of pagination)
 - `objects` - a JSON list of objects which briefly describe each capsule in the current result page. Each object contains the following attributes:
-   * `created` - when the capsule was created, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
+   * `created` - when the capsule was created, a timestamp in ISO format (e.g. `2013-06-07T10:45Z`)
    * `id` - a unique identifier for this capsule
    * `resource_uri` - the absolute URI of the capsule resource (e.g.`/api/v1/capsule/3/`)
    * `title` - the title given to this capsule
    * `user` - the URI of the User resource who owns this capsule.
-   * `expires` - when the capsule expires, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
+   * `expires` - when the capsule expires, a timestamp in ISO format (e.g. `2043-06-07T10:45Z`)
 
 Example:
 
@@ -88,19 +88,21 @@ Example:
   },
   "objects": [
      {
-         "created": "2013-06-07 10:45:01",
+         "created": "2013-06-07T10:45Z",
          "id": 3,
          "resource_uri": "/api/v1/capsule/3/",
          "title": "Photos",
-         "user": "/api/v1/user/3/"
+         "user": "/api/v1/user/3/",
+         "expires": "2043-06-07T10:45Z"
       },
       {
-          "created": "2013-06-07 10:44:38",
+          "created": "2013-06-07T10:44Z",
           "id": 2,
           "resource_uri":
           "/api/v1/capsule/2/",
           "title": "Stuff",
-          "user": "/api/v1/user/2/"
+          "user": "/api/v1/user/2/",
+          "expires": "2043-06-07T10:45Z"
        }
     ]
 }
@@ -114,14 +116,15 @@ Get details for capsule :id. The capsule must be owned by the authenticated user
 **Returns**:
 
 - `id` - a unique identifier of the capsule
-- `created` - when the capsule was created, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
-- `expires` - when the capsule will expire, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
-- `size` - the capsule's size in megabytes
-- `used` - the total size of all archives in this capsule, in megabytes
+- `created` - when the capsule was created, a timestamp in ISO format (e.g. `2013-06-07T10:45Z`)
+- `expires` - when the capsule will expire, a timestamp in ISO format (e.g. `2043-06-07T10:45Z`)
+- `size` - the capsule's size in bytes
+- `remaining` - remaining size in this capsule, in bytes
+- `resource_uri` - the absolute URI of the capsule resource (e.g./api/v1/capsule/3/)
 - `archives` - a list of JSON objects, one for each archive associated with this capsule. Each object has the following data:
    * `id` - a unique identifier for this archive
-   * `size` - the size of this archive, in megabytes
-   * `created` - when this archive was created, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
+   * `size` - the size of this archive, in bytes
+   * `created` - when this archive was created, a timestamp in ISO format (e.g. `2013-06-07T10:45Z`)
    * `title` - the title of this archive
 
 ---
@@ -147,12 +150,11 @@ A JSON object containing two attributes:
    * `previous` - if a previous page of results is available this will contain the page's URI or, if not available, null.
    * `total_count` - the total number of results (independent of pagination)
 - `objects` - a JSON list of objects which briefly describe each capsule in the current result page. Each object contains the following attributes:
-   * `created` - when the archive was created, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
+   * `created` - when the archive was created, a timestamp in ISO format (e.g. `2043-06-07T10:45Z`)
    * `id` - a unique identifier for this archive.
    * `resource_uri` - the absolute URI of the archive resource (e.g.`/api/v1/archive/3/`).
    * `title` - the title given to this archive.
    * `capsule` - the URI of the capsule where this archive belongs.
-   * `expires` - when the archive expires, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
 
 ### GET /archive/:id/
 
@@ -163,10 +165,8 @@ Get archive (with :id) details.
 **Returns**:
 
 - `id` - a unique identifier of the capsule
-- `created` - when the capsule was created, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
-- `expires` - when the capsule will expire, a timestamp in ISO format (e.g. `2013-06-07 10:45:01`)
-- `size` - the capsule's size in megabytes
-- `used` - the total size of all archives in this capsule, in megabytes
+- `created` - when the archive was created, a timestamp in ISO format (e.g. `2013-06-07T10:45Z`)
+- `size` - the archive's size in bytes
 - `title` - the title given to this archive.
 - `description` - the description given to this archive.
 
