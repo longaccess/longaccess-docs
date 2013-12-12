@@ -88,19 +88,13 @@ different container format than `zip` like for example:
 
 ### Certificate
 
-The optional document contains the keys used to encrypt the archive as well as the optional signatures of any storage services. It is a mapping with one of the following keys:
+The optional document contains the keys used to encrypt the archive. It is a mapping with one of the following keys:
 
 * `key`: - a binary value with the encryption key
 * `keys`: - a sequence of keys used in the archive. Each member is either a binary value with an encryption key or a mapping with the folowing keys:
     - `key` - an integer index to another member of this list which should be used as the input key material of a key derivation function
     - `method` - the id of a key derivation function
     - `input` - a binary value with any input data that was used with the KDF algorithm (e.g. for `scrypt` a value in [the ASN.1 schema `scrypt-params`](http://tools.ietf.org/html/draft-josefsson-scrypt-kdf-01#section-6)).
-
-Additionally the document mapping may contain a key `signature` which contains another mapping with the following keys:
-
-* `originator` - a plain text identifying the creator of the signature
-* `data` - the digital signature itself
-* `type` - the type of signature (e.g. S/MIME)
 
 #### Examples of Key Derivation Functions
 
@@ -122,13 +116,19 @@ The optional document is a mapping that may contain the following key:
 
 ### Signature
 
-The optional document is a mapping that may contain the following key:
+The optional document contains information produced by the storage service that holds the archive, and is a mapping that must contain the following keys:
 
 * `aid` - a string that identifies the remote downloadable archive, in combination with the `uri`
 * `uri` - a URI that identifies the service that is holding the archive with the `aid`
 * `created` - a timestamp for the time that the archive was registered with the service, in ISO format (e.g. 2013-06-07T10:45:01Z)
 * `expires` - a timestamp for the time that the archive is scheduled, at the time of it's creation, to be removed  by the service, in ISO format.
 * `creator` - an identifying attribute of the person or organization who uploaded the archive to the service, e.g. the registered email address or a name/email.
+
+Additionally the document mapping may contain the following keys:
+
+* `origin` - a plain text field identifying the creator of a digital signature that verifies a part of this document.
+* `data` - the digital signature itself
+* `type` - the type of signature (e.g. S/MIME)
 
 ### Auth
 
