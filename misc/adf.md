@@ -127,6 +127,8 @@ The optional document is a mapping that may contain the following key:
 * `aid` - a string that identifies the remote downloadable archive, in combination with the `uri`
 * `uri` - a URI that identifies the service that is holding the archive with the `aid`
 * `created` - a timestamp for the time that the archive was registered with the service, in ISO format (e.g. 2013-06-07T10:45:01Z)
+* `expires` - a timestamp for the time that the archive is scheduled, at the time of it's creation, to be removed  by the service, in ISO format.
+* `creator` - an identifying attribute of the person or organization who uploaded the archive to the service, e.g. the registered email address or a name/email.
 
 ### Auth
 
